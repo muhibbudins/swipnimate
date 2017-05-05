@@ -18,20 +18,18 @@ $(document).ready(function() {
     var maping = $(e.slides[e.activeIndex]).find('[data-slide="animated"]');
     maping.map(function(k, v) {
       var target = $(v);
-      animate = target.data('animate');
 
       target.hide();
-      target.removeClass('animated ' + animate);
+      target.removeClass('animated ' + target.data('animate'));
     });
   })
   .on('onSlideChangeEnd', function(e) {
     var maping = $(e.slides[e.activeIndex]).find('[data-slide="animated"]');
     maping.map(function(k, v) {
       var target = $(v);
-      animate = target.data('animate');
 
       target.show();
-      target.addClass('animated ' + animate);
+      target.addClass('animated ' + target.data('animate'));
     });
   });
 });
