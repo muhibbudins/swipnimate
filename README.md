@@ -5,7 +5,7 @@
 Javascript slider using Swiper JS and Animate.CSS.
 
 [Demo](https://muhibbudins.github.io/swipnimate/)
-<!-- [Medium (Indonesian Language)]() -->
+[Medium (Indonesian Language)](https://medium.com/@muhibbudins/trick-bikin-slider-js-gratis-rasa-premium-a7c7ba09d744)
 
 ### How to use
 
@@ -13,10 +13,10 @@ Just combine this project with your project, for slider config see `js/swipnimat
 
 ### Thanks to
 
-[Jquery](https://github.com/jquery/jquery)
-[Swiper](https://github.com/nolimits4web/Swiper)
-[Animate.css](https://github.com/daneden/animate.css/)
-[Pexels](https://www.pexels.com/)
+- [Jquery](https://github.com/jquery/jquery)
+- [Swiper](https://github.com/nolimits4web/Swiper)
+- [Animate.css](https://github.com/daneden/animate.css/)
+- [Pexels](https://www.pexels.com/)
 
 ### License MIT
 

@@ -11,7 +11,7 @@ $(document).ready(function() {
     pagination: '.swiper-pagination',
     paginationClickable: true,
     spaceBetween: 0,
-    autoplay: 1500,
+    autoplay: 2500,
     loop: true
   })
   .on('onSlideChangeStart', function(e) {

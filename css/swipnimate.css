@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Pacifico|Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Pacifico|Quicksand|Fjalla+One");
+/* Center slide text vertically */
 body {
   background: #ECF0F1;
   font-family: 'Quicksand', sans-serif;
@@ -11,12 +12,6 @@ body {
   width: 100%;
   height: 500px; }
   .swiper-container .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #FFFFFF;
-    padding: 0;
-    position: relative;
-    /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -28,26 +23,47 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
-    align-items: center; }
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    background: #FFFFFF;
+    padding: 0;
+    position: relative; }
     .swiper-container .swiper-slide img {
       width: 100%;
       height: auto; }
     .swiper-container .swiper-slide .slide-inner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(37, 37, 37, 0.5);
-      display: block;
-      padding-top: 10%; }
+      background-color: rgba(37, 37, 37, 0.5); }
     .swiper-container .swiper-slide [data-slide="animated"]:not:nth-child(1) {
       display: none; }
     .swiper-container .swiper-slide .slide-title {
       font-size: 48px;
       font-family: 'Pacifico', cursive;
       line-height: normal;
-      color: #F1C40F; }
+      color: #F1C40F;
+      margin: 0 auto; }
     .swiper-container .swiper-slide .slide-captions {
       font-family: 'Quicksand', sans-serif;
       line-height: normal;

@@ -1,0 +1,12 @@
+.swiper-container .swiper-slide .slide-inner.slide-square .slide-title {
+  width: 50%;
+  padding: 25px 20px;
+  background-color: #3498db;
+  font-family: 'Fjalla One', sans-serif;
+  color: #ffffff;
+  font-size: 32px; }
+.swiper-container .swiper-slide .slide-inner.slide-square .slide-captions {
+  text-align: left;
+  background-color: #ffffff; }
+
+/*# sourceMappingURL=swipnimate-theme.css.map */

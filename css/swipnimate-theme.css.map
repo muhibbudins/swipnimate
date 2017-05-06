@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEI,sEAAa;EACX,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,SAAS;EAClB,gBAAgB,EAAE,OAAO;EACzB,WAAW,EAAE,wBAAwB;EACrC,KAAK,EAAE,OAAO;EACd,SAAS,EAAE,IAAI;AAEjB,yEAAgB;EACd,UAAU,EAAE,IAAI;EAChB,gBAAgB,EAAE,OAAO",
+"sources": ["../scss/swipnimate-theme.scss"],
+"names": [],
+"file": "swipnimate-theme.css"
+}
