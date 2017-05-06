@@ -5,6 +5,7 @@
 Javascript slider using Swiper JS and Animate.CSS.
 
 [Demo](https://muhibbudins.github.io/swipnimate/)
+
 [Medium (Indonesian Language)](https://medium.com/@muhibbudins/trick-bikin-slider-js-gratis-rasa-premium-a7c7ba09d744)
 
 ### How to use
