@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["LibraryName"] = factory();
+		exports["SwipNimate"] = factory();
 	else
-		root["LibraryName"] = factory();
+		root["SwipNimate"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -777,4 +777,4 @@ module.exports = function (css) {
 /***/ })
 /******/ ])["default"];
 });
-//# sourceMappingURL=LibraryName.js.map
+//# sourceMappingURL=SwipNimate.js.map

@@ -1,9 +1,9 @@
 {
-  "name": "LibraryName",
+  "name": "SwipNimate",
   "version": "1.0",
-  "description": "Library Description",
+  "description": "Swiper.js and Animate.css in collaboration",
   "main": "/src/index.js",
-  "npmName": "LibraryName",
+  "npmName": "SwipNimate",
   "npmFileMap": [
     {
       "basePath": "lib",
@@ -20,21 +20,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/username/library-name.git"
+    "url": "https://github.com/muhibbudins/swipnimate.git"
   },
   "keywords": [
     "webpack",
     "umd",
     "template",
     "es6 library",
-    "library"
+    "library",
+    "swiper",
+    "animate.css",
+    "animation",
+    "slider"
   ],
-  "author": "Your Name <youremail@domain.com>",
+  "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/username/library-name/issues"
+    "url": "https://github.com/muhibbudins/swipnimate/issues"
   },
-  "homepage": "https://github.com/username/library-name",
+  "homepage": "https://github.com/muhibbudins/swipnimate",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
