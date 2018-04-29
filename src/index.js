@@ -8,6 +8,7 @@ export default class Swipnimate {
     this.content = args.slides;
     this.animateEnd = 'fadeOut';
     this.pagination = document.querySelector('.swip-pagination');
+    this.loading = document.querySelector('.swip-loading');
     this.wrapper = document.querySelector('.swip-wrapper');
     this.element = ['background', 'image', 'title', 'tagline', 'button'];
 
@@ -31,6 +32,7 @@ export default class Swipnimate {
         <a href="" class="swip-button"></a>
       </div>
     `;
+    let loading = 'Loading';
     let fragment = document.createDocumentFragment();
 
     this.pagination.classList.add('swiper-pagination');
@@ -45,6 +47,8 @@ export default class Swipnimate {
     }
 
     this.wrapper.appendChild(fragment);
+
+    this.loading.innerHTML = loading;
 
     callback('done');
   }
@@ -133,7 +137,6 @@ export default class Swipnimate {
       },
       paginationClickable: true,
       spaceBetween: 0,
-      effect: 'slide',
       shortSwipes: false,
       autoplay: {
         delay: this.duration
