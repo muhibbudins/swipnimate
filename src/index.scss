@@ -1,14 +1,64 @@
 html, body {
   padding: 0;
+  margin: 0;
 }
-body {
-  width: 100%;
-  height: 100vh;
-  font-size: 48px;
-  font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #DADADA;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+.swip {
+  &-slide {
+    width: 100%;
+    height: 100vh;
+    background-color: #FAFAFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-inner {
+    width: 80%;
+    position: relative;
+    height: 80vh;
+  }
+  &-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #DADADA;
+  }
+  &-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #ABABAB;
+    width: 60%;
+    height: 60vh;
+  }
+  &-title {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #CACACA;
+    width: 40%;
+    min-height: 100px;
+  }
+  &-tagline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #BDBDBD;
+    width: 40%;
+    min-height: 20px;
+  }
+  &-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FAFAFA;
+    width: 20%;
+    min-height: 20px;
+  }
 }

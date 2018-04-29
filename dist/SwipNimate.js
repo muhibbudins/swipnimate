@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["SwipNimate"] = factory();
+		exports["Swipnimate"] = factory();
 	else
-		root["SwipNimate"] = factory();
+		root["Swipnimate"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -84,36 +84,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _rectangle = __webpack_require__(1);
-
-var _rectangle2 = _interopRequireDefault(_rectangle);
-
-__webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+__webpack_require__(1);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var SimpleMath = function () {
-  function SimpleMath(args) {
-    _classCallCheck(this, SimpleMath);
+var SimpleMath = function SimpleMath(args) {
+  _classCallCheck(this, SimpleMath);
 
-    console.log(args);
-  }
-
-  _createClass(SimpleMath, [{
-    key: 'getRectangle',
-    value: function getRectangle(x, y) {
-      var fx = new _rectangle2.default();
-
-      return fx.calculate(x, y);
-    }
-  }]);
-
-  return SimpleMath;
-}();
+  console.log(args);
+};
 
 exports.default = SimpleMath;
 
@@ -121,42 +100,8 @@ exports.default = SimpleMath;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Rectangle = function () {
-  function Rectangle(args) {
-    _classCallCheck(this, Rectangle);
-
-    this.calculate(args);
-  }
-
-  _createClass(Rectangle, [{
-    key: "calculate",
-    value: function calculate(x, y) {
-      return x * y;
-    }
-  }]);
-
-  return Rectangle;
-}();
-
-exports.default = Rectangle;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(3);
+var content = __webpack_require__(2);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -170,7 +115,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(4)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -202,21 +147,21 @@ if(false) {
 }
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
 // module
-exports.push([module.i, "html, body {\n  padding: 0; }\n\nbody {\n  width: 100%;\n  height: 100vh;\n  font-size: 48px;\n  font-weight: 400;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  color: #DADADA;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n", ""]);
+exports.push([module.i, "html, body {\n  padding: 0;\n  margin: 0; }\n\n.swip-slide {\n  width: 100%;\n  height: 100vh;\n  background-color: #FAFAFA;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.swip-inner {\n  width: 80%;\n  position: relative;\n  height: 80vh; }\n\n.swip-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #DADADA; }\n\n.swip-image {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  background-color: #ABABAB;\n  width: 60%;\n  height: 60vh; }\n\n.swip-title {\n  position: absolute;\n  top: 30%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #CACACA;\n  width: 40%;\n  min-height: 100px; }\n\n.swip-tagline {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #BDBDBD;\n  width: 40%;\n  min-height: 20px; }\n\n.swip-button {\n  position: absolute;\n  top: 60%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #FAFAFA;\n  width: 20%;\n  min-height: 20px; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -298,7 +243,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -364,7 +309,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(6);
+var	fixUrls = __webpack_require__(5);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -680,7 +625,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 
@@ -777,4 +722,4 @@ module.exports = function (css) {
 /***/ })
 /******/ ])["default"];
 });
-//# sourceMappingURL=SwipNimate.js.map
+//# sourceMappingURL=Swipnimate.js.map

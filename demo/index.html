@@ -4,17 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Library Name</title>
+  <title>Swipnimate — Swiper + Animate.css</title>
+
+  <!-- Include Animate.css & Swiper.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
 </head>
 <body>
-  <div>Hello There!</div>
-  <!-- Do Stuff -->
-  <script src="../dist/LibraryName.js"></script>
+  <div id="slider-element">
+    <div class="swip-slide swip-trivium">
+      <div class="swip-inner">
+        <div class="swip-background"></div>
+        <div class="swip-image"></div>
+        <div class="swip-title"></div>
+        <div class="swip-tagline"></div>
+        <div class="swip-button"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Include Animate.css & Swiper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
+  <script src="../dist/Swipnimate.js"></script>
   <script>
-    var x = new LibraryName({
-      a: 'b'
+    var animate = new Swipnimate({
+      target: '#slider-element',
+      slides: [{
+        theme: 'trivium',
+        title: '',
+        image: ''
+      }]
     })
-    console.log(x.getRectangle(2, 2))
   </script>
 </body>
 </html>
