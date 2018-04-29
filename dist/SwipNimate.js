@@ -99,7 +99,7 @@ var Swipnimate = function () {
     this.content = args.slides;
     this.wrapper = document.querySelector('.swip-wrapper');
     this.slides = document.querySelectorAll('.swip-slide');
-
+    this.element = ['background', 'image', 'title', 'tagline', 'button'];
     this.initialize();
   }
 
@@ -121,25 +121,84 @@ var Swipnimate = function () {
         if (content[index]) {
           var config = content[index];
           var unique = _this.uniqueId();
+          var swip = {};
 
           slide.classList.add(config.theme);
           slide.classList.add(unique);
           slide.classList.add('swiper-slide');
 
           var parent = '.swip-slide.' + unique;
-          var swipBackground = document.querySelector(parent + ' .swip-background');
-          var swipImage = document.querySelector(parent + ' .swip-image');
-          var swipTitle = document.querySelector(parent + ' .swip-title');
-          var swipTagline = document.querySelector(parent + ' .swip-tagline');
-          var swipButton = document.querySelector(parent + ' .swip-button');
 
-          swipBackground.style.backgroundColor = config.background;
-          swipImage.style.backgroundImage = 'url(' + config.image + ')';
-          swipTitle.innerHTML = config.title;
-          swipTagline.innerHTML = config.tagline;
-          swipButton.innerHTML = config.button;
+          _this.element.map(function (item) {
+            swip[item] = document.querySelector(parent + ' .swip-' + item);
+
+            if (config.animation[item]) {
+              var animation = config.animation[item];
+
+              swip[item].setAttribute('data-animation', animation[0]);
+              swip[item].setAttribute('data-delay', 'animation-duration-' + animation[1]);
+            }
+          });
+
+          swip['background'].style.backgroundColor = config.background;
+          swip['image'].style.backgroundImage = 'url(' + config.image + ')';
+          swip['title'].innerHTML = config.title;
+          swip['tagline'].innerHTML = config.tagline;
+          swip['button'].innerHTML = config.button;
         }
       });
+
+      /*eslint-disable */
+      var startAnimation = function startAnimation() {
+        var swip = {};
+
+        _this.element.map(function (item) {
+          swip[item] = document.querySelector('.swiper-slide-active .swip-' + item);
+
+          var getAnimate = swip[item].getAttribute('data-animation');
+          var getDelay = swip[item].getAttribute('data-delay');
+          var getDelayNumber = parseInt(getDelay.match(/\d/g).join(''));
+
+          setTimeout(function () {
+            swip[item].style.display = 'block';
+          }, getDelayNumber);
+
+          swip[item].classList.add('animated');
+          swip[item].classList.add(getAnimate);
+          swip[item].classList.add(getDelay);
+        });
+      };
+
+      var s = new Swiper(this.target, {
+        pagination: {
+          el: '.swiper-pagination'
+        },
+        paginationClickable: true,
+        spaceBetween: 0,
+        autoplay: {
+          delay: 5000
+        },
+        loop: true
+      }).on('slideChangeTransitionStart', function () {
+        var swip = {};
+
+        _this.element.map(function (item) {
+          swip[item] = document.querySelectorAll('.swip-' + item);
+          swip[item].forEach(function (item) {
+            var getAnimate = item.getAttribute('data-animation');
+            var getDelay = item.getAttribute('data-delay');
+
+            item.classList.remove('animated');
+            item.classList.remove(getAnimate);
+            item.classList.remove(getDelay);
+            item.style.display = 'none';
+          });
+        });
+      }).on('slideChangeTransitionEnd', function () {
+        startAnimation();
+      });
+
+      startAnimation();
     }
   }]);
 
@@ -207,7 +266,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "html, body {\n  padding: 0;\n  margin: 0; }\n\n.swip-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.swip-slide {\n  width: 100%;\n  height: 100vh;\n  background-color: #FFFFFF;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.swip-inner {\n  width: 80%;\n  position: relative;\n  height: 80vh; }\n\n.swip-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #DADADA; }\n\n.swip-image {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  background-color: #ABABAB;\n  width: 60%;\n  height: 60vh;\n  background-size: cover; }\n\n.swip-title {\n  position: absolute;\n  top: 30%;\n  left: 50%;\n  transform: translateX(-50%); }\n\n.swip-tagline {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%); }\n\n.swip-button {\n  position: absolute;\n  top: 60%;\n  left: 50%;\n  transform: translateX(-50%);\n  background: #3498db;\n  border-radius: 28px;\n  font-family: Arial;\n  color: #ffffff;\n  font-size: 20px;\n  padding: 12px 30px 12px 30px;\n  text-decoration: none;\n  cursor: pointer; }\n  .swip-button:hover {\n    background-color: #258cd1; }\n\n.trivium .swip-background {\n  width: 800px;\n  height: 500px;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%); }\n\n.trivium .swip-image {\n  width: 500px;\n  height: 400px;\n  right: -15%;\n  left: auto;\n  background-position: right center; }\n\n.trivium .swip-title {\n  font-family: 'Roboto Slab', serif;\n  font-weight: 500;\n  font-size: 48px;\n  left: 5%;\n  transform: translateX(0);\n  width: 700px;\n  line-height: 1.1;\n  color: #4F4F4F; }\n\n.trivium .swip-tagline {\n  font-family: 'Quicksand', sans-serif;\n  font-weight: 400;\n  font-size: 20px;\n  left: 5%;\n  transform: translateX(0);\n  width: 600px;\n  color: #7D7D7D; }\n\n.trivium .swip-button {\n  font-family: 'Quicksand', sans-serif;\n  font-weight: 500;\n  font-size: 18px;\n  background-color: transparent;\n  border: 1px solid #2D9CDB;\n  color: #2D9CDB;\n  left: 5%;\n  top: 65%;\n  transform: translateX(0); }\n  .trivium .swip-button:hover {\n    color: #FFFFFF;\n    background-color: #2D9CDB; }\n", ""]);
+exports.push([module.i, "html, body {\n  padding: 0;\n  margin: 0; }\n\n.swip-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.swip-slide {\n  width: 100%;\n  height: 100vh;\n  background-color: #FFFFFF;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.swip-inner {\n  width: 80%;\n  position: relative;\n  height: 80vh; }\n\n.swip-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #DADADA; }\n\n.swip-image {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  background-color: #ABABAB;\n  width: 60%;\n  height: 60vh;\n  background-size: cover; }\n\n.swip-title {\n  position: absolute;\n  top: 30%;\n  left: 50%;\n  transform: translateX(-50%); }\n\n.swip-tagline {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%); }\n\n.swip-button {\n  position: absolute;\n  top: 60%;\n  left: 50%;\n  transform: translateX(-50%);\n  background: #3498db;\n  border-radius: 28px;\n  font-family: Arial;\n  color: #ffffff;\n  font-size: 20px;\n  padding: 12px 30px 12px 30px;\n  text-decoration: none;\n  cursor: pointer; }\n  .swip-button:hover {\n    background-color: #258cd1; }\n\n.trivium .swip-background {\n  display: none;\n  width: 800px;\n  height: 500px;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%); }\n\n.trivium .swip-image {\n  display: none;\n  width: 500px;\n  height: 400px;\n  right: -15%;\n  left: auto;\n  background-position: right center; }\n\n.trivium .swip-title {\n  display: none;\n  font-family: 'Roboto Slab', serif;\n  font-weight: 500;\n  font-size: 48px;\n  left: 5%;\n  transform: translateX(0);\n  width: 700px;\n  line-height: 1.1;\n  color: #4F4F4F; }\n\n.trivium .swip-tagline {\n  display: none;\n  font-family: 'Quicksand', sans-serif;\n  font-weight: 400;\n  font-size: 20px;\n  left: 5%;\n  transform: translateX(0);\n  width: 600px;\n  color: #7D7D7D; }\n\n.trivium .swip-button {\n  display: none;\n  font-family: 'Quicksand', sans-serif;\n  font-weight: 500;\n  font-size: 18px;\n  background-color: transparent;\n  border: 1px solid #2D9CDB;\n  color: #2D9CDB;\n  left: 5%;\n  top: 65%;\n  transform: translateX(0); }\n  .trivium .swip-button:hover {\n    color: #FFFFFF;\n    background-color: #2D9CDB; }\n\n.animation-delay-100 {\n  animation-delay: 0.1s; }\n\n.animation-duration-100 {\n  animation-duration: 0.1s; }\n\n.animation-duration-200 {\n  animation-duration: 0.2s; }\n\n.animation-delay-200 {\n  animation-delay: 0.2s; }\n\n.animation-duration-200 {\n  animation-duration: 0.2s; }\n\n.animation-duration-400 {\n  animation-duration: 0.4s; }\n\n.animation-delay-300 {\n  animation-delay: 0.3s; }\n\n.animation-duration-300 {\n  animation-duration: 0.3s; }\n\n.animation-duration-600 {\n  animation-duration: 0.6s; }\n\n.animation-delay-400 {\n  animation-delay: 0.4s; }\n\n.animation-duration-400 {\n  animation-duration: 0.4s; }\n\n.animation-duration-800 {\n  animation-duration: 0.8s; }\n\n.animation-delay-500 {\n  animation-delay: 0.5s; }\n\n.animation-duration-500 {\n  animation-duration: 0.5s; }\n\n.animation-duration-1000 {\n  animation-duration: 1s; }\n\n.animation-delay-600 {\n  animation-delay: 0.6s; }\n\n.animation-duration-600 {\n  animation-duration: 0.6s; }\n\n.animation-duration-1200 {\n  animation-duration: 1.2s; }\n\n.animation-delay-800 {\n  animation-delay: 0.8s; }\n\n.animation-duration-800 {\n  animation-duration: 0.8s; }\n\n.animation-duration-1600 {\n  animation-duration: 1.6s; }\n\n.animation-delay-900 {\n  animation-delay: 0.9s; }\n\n.animation-duration-900 {\n  animation-duration: 0.9s; }\n\n.animation-duration-1800 {\n  animation-duration: 1.8s; }\n\n.animation-delay-1000 {\n  animation-delay: 1s; }\n\n.animation-duration-1000 {\n  animation-duration: 1s; }\n\n.animation-duration-2000 {\n  animation-duration: 2s; }\n\n.animation-delay-1100 {\n  animation-delay: 1.1s; }\n\n.animation-duration-1100 {\n  animation-duration: 1.1s; }\n\n.animation-duration-2200 {\n  animation-duration: 2.2s; }\n\n.animation-delay-1200 {\n  animation-delay: 1.2s; }\n\n.animation-duration-1200 {\n  animation-duration: 1.2s; }\n\n.animation-duration-2400 {\n  animation-duration: 2.4s; }\n\n.animation-delay-1300 {\n  animation-delay: 1.3s; }\n\n.animation-duration-1300 {\n  animation-duration: 1.3s; }\n\n.animation-duration-2600 {\n  animation-duration: 2.6s; }\n\n.animation-delay-1400 {\n  animation-delay: 1.4s; }\n\n.animation-duration-1400 {\n  animation-duration: 1.4s; }\n\n.animation-duration-2800 {\n  animation-duration: 2.8s; }\n\n.animation-delay-1500 {\n  animation-delay: 1.5s; }\n\n.animation-duration-1500 {\n  animation-duration: 1.5s; }\n\n.animation-duration-3000 {\n  animation-duration: 3s; }\n\n.animation-delay-1600 {\n  animation-delay: 1.6s; }\n\n.animation-duration-1600 {\n  animation-duration: 1.6s; }\n\n.animation-duration-3200 {\n  animation-duration: 3.2s; }\n\n.animation-delay-1800 {\n  animation-delay: 1.8s; }\n\n.animation-duration-1800 {\n  animation-duration: 1.8s; }\n\n.animation-duration-3600 {\n  animation-duration: 3.6s; }\n\n.animation-delay-1900 {\n  animation-delay: 1.9s; }\n\n.animation-duration-1900 {\n  animation-duration: 1.9s; }\n\n.animation-duration-3800 {\n  animation-duration: 3.8s; }\n\n.animation-delay-2000 {\n  animation-delay: 2s; }\n\n.animation-duration-2000 {\n  animation-duration: 2s; }\n\n.animation-duration-4000 {\n  animation-duration: 4s; }\n", ""]);
 
 // exports
 
