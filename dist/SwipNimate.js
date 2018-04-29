@@ -84,17 +84,69 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 __webpack_require__(1);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var SimpleMath = function SimpleMath(args) {
-  _classCallCheck(this, SimpleMath);
+var Swipnimate = function () {
+  function Swipnimate(args) {
+    _classCallCheck(this, Swipnimate);
 
-  console.log(args);
-};
+    if (!args.target) throw Error('Target must be defined');
+    this.target = args.target;
+    this.content = args.slides;
+    this.wrapper = document.querySelector('.swip-wrapper');
+    this.slides = document.querySelectorAll('.swip-slide');
 
-exports.default = SimpleMath;
+    this.initialize();
+  }
+
+  _createClass(Swipnimate, [{
+    key: 'uniqueId',
+    value: function uniqueId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+  }, {
+    key: 'initialize',
+    value: function initialize() {
+      var _this = this;
+
+      var slides = this.slides;
+      var content = this.content;
+
+      this.wrapper.classList.add('swiper-wrapper');
+      slides.forEach(function (slide, index) {
+        if (content[index]) {
+          var config = content[index];
+          var unique = _this.uniqueId();
+
+          slide.classList.add(config.theme);
+          slide.classList.add(unique);
+          slide.classList.add('swiper-slide');
+
+          var parent = '.swip-slide.' + unique;
+          var swipBackground = document.querySelector(parent + ' .swip-background');
+          var swipImage = document.querySelector(parent + ' .swip-image');
+          var swipTitle = document.querySelector(parent + ' .swip-title');
+          var swipTagline = document.querySelector(parent + ' .swip-tagline');
+          var swipButton = document.querySelector(parent + ' .swip-button');
+
+          swipBackground.style.backgroundColor = config.background;
+          swipImage.style.backgroundImage = 'url(' + config.image + ')';
+          swipTitle.innerHTML = config.title;
+          swipTagline.innerHTML = config.tagline;
+          swipButton.innerHTML = config.button;
+        }
+      });
+    }
+  }]);
+
+  return Swipnimate;
+}();
+
+exports.default = Swipnimate;
 
 /***/ }),
 /* 1 */
@@ -155,7 +207,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "html, body {\n  padding: 0;\n  margin: 0; }\n\n.swip-slide {\n  width: 100%;\n  height: 100vh;\n  background-color: #FAFAFA;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.swip-inner {\n  width: 80%;\n  position: relative;\n  height: 80vh; }\n\n.swip-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #DADADA; }\n\n.swip-image {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  background-color: #ABABAB;\n  width: 60%;\n  height: 60vh; }\n\n.swip-title {\n  position: absolute;\n  top: 30%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #CACACA;\n  width: 40%;\n  min-height: 100px; }\n\n.swip-tagline {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #BDBDBD;\n  width: 40%;\n  min-height: 20px; }\n\n.swip-button {\n  position: absolute;\n  top: 60%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #FAFAFA;\n  width: 20%;\n  min-height: 20px; }\n", ""]);
+exports.push([module.i, "html, body {\n  padding: 0;\n  margin: 0; }\n\n.swip-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.swip-slide {\n  width: 100%;\n  height: 100vh;\n  background-color: #FFFFFF;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.swip-inner {\n  width: 80%;\n  position: relative;\n  height: 80vh; }\n\n.swip-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #DADADA; }\n\n.swip-image {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  background-color: #ABABAB;\n  width: 60%;\n  height: 60vh;\n  background-size: cover; }\n\n.swip-title {\n  position: absolute;\n  top: 30%;\n  left: 50%;\n  transform: translateX(-50%); }\n\n.swip-tagline {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%); }\n\n.swip-button {\n  position: absolute;\n  top: 60%;\n  left: 50%;\n  transform: translateX(-50%);\n  background: #3498db;\n  border-radius: 28px;\n  font-family: Arial;\n  color: #ffffff;\n  font-size: 20px;\n  padding: 12px 30px 12px 30px;\n  text-decoration: none;\n  cursor: pointer; }\n  .swip-button:hover {\n    background-color: #258cd1; }\n\n.trivium .swip-background {\n  width: 800px;\n  height: 500px;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%); }\n\n.trivium .swip-image {\n  width: 500px;\n  height: 400px;\n  right: -15%;\n  left: auto;\n  background-position: right center; }\n\n.trivium .swip-title {\n  font-family: 'Roboto Slab', serif;\n  font-weight: 500;\n  font-size: 48px;\n  left: 5%;\n  transform: translateX(0);\n  width: 700px;\n  line-height: 1.1;\n  color: #4F4F4F; }\n\n.trivium .swip-tagline {\n  font-family: 'Quicksand', sans-serif;\n  font-weight: 400;\n  font-size: 20px;\n  left: 5%;\n  transform: translateX(0);\n  width: 600px;\n  color: #7D7D7D; }\n\n.trivium .swip-button {\n  font-family: 'Quicksand', sans-serif;\n  font-weight: 500;\n  font-size: 18px;\n  background-color: transparent;\n  border: 1px solid #2D9CDB;\n  color: #2D9CDB;\n  left: 5%;\n  top: 65%;\n  transform: translateX(0); }\n  .trivium .swip-button:hover {\n    color: #FFFFFF;\n    background-color: #2D9CDB; }\n", ""]);
 
 // exports
 

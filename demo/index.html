@@ -9,18 +9,33 @@
   <!-- Include Animate.css & Swiper.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+
+  <!-- Trivium Font -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Roboto+Slab:700" rel="stylesheet">
 </head>
 <body>
-  <div id="slider-element">
-    <div class="swip-slide swip-trivium">
-      <div class="swip-inner">
-        <div class="swip-background"></div>
-        <div class="swip-image"></div>
-        <div class="swip-title"></div>
-        <div class="swip-tagline"></div>
-        <div class="swip-button"></div>
+  <div class="swip-container" id="swip-container">
+    <div class="swip-wrapper">
+      <div class="swip-slide">
+        <div class="swip-inner">
+          <div class="swip-background"></div>
+          <div class="swip-image"></div>
+          <div class="swip-title"></div>
+          <div class="swip-tagline"></div>
+          <a href="" class="swip-button"></a>
+        </div>
+      </div>
+      <div class="swip-slide">
+        <div class="swip-inner">
+          <div class="swip-background"></div>
+          <div class="swip-image"></div>
+          <div class="swip-title"></div>
+          <div class="swip-tagline"></div>
+          <a href="" class="swip-button"></a>
+        </div>
       </div>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
   
   <!-- Include Animate.css & Swiper.js -->
@@ -28,13 +43,29 @@
   <script src="../dist/Swipnimate.js"></script>
   <script>
     var animate = new Swipnimate({
-      target: '#slider-element',
+      target: '#swip-container',
       slides: [{
         theme: 'trivium',
-        title: '',
-        image: ''
+        background: '#E9FCFF',
+        image: 'https://images.pexels.com/photos/800176/pexels-photo-800176.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        title: 'Sequi omnis, repellat dicta beatae cupiditate codi',
+        tagline: 'Reiciendis placeat quos animi minima!',
+        button: 'Learn More'
+      }, {
+        theme: 'trivium',
+        background: '#E9FCFF',
+        image: 'https://images.pexels.com/photos/800176/pexels-photo-800176.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        title: 'Sequi omnis, repellat dicta beatae cupiditate codi',
+        tagline: 'Reiciendis placeat quos animi minima!',
+        button: 'Learn More'
       }]
-    })
+    });
+    
+    new Swiper(animate.target, {
+      pagination: {
+        el: '.swiper-pagination',
+      }
+    });
   </script>
 </body>
 </html>

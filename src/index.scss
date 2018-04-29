@@ -4,10 +4,15 @@ html, body {
 }
 
 .swip {
+  &-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
   &-slide {
     width: 100%;
     height: 100vh;
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,32 +38,87 @@ html, body {
     background-color: #ABABAB;
     width: 60%;
     height: 60vh;
+    background-size: cover;
   }
   &-title {
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #CACACA;
-    width: 40%;
-    min-height: 100px;
   }
   &-tagline {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #BDBDBD;
-    width: 40%;
-    min-height: 20px;
   }
   &-button {
     position: absolute;
     top: 60%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #FAFAFA;
-    width: 20%;
-    min-height: 20px;
+    background: #3498db;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 12px 30px 12px 30px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(#3498db, 5%);
+    }
+  }
+}
+.trivium .swip {
+  &-background {
+    width: 800px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  &-image {
+    width: 500px;
+    height: 400px;
+    right: -15%;
+    left: auto;
+    background-position: right center;
+  }
+  &-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    font-size: 48px;
+    left: 5%;
+    transform: translateX(0);
+    width: 700px;
+    line-height: 1.1;
+    color: #4F4F4F;
+  }
+  &-tagline {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    left: 5%;
+    transform: translateX(0);
+    width: 600px;
+    color: #7D7D7D;
+  }
+  &-button {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: transparent;
+    border: 1px solid #2D9CDB;
+    color: #2D9CDB;
+    left: 5%;
+    top: 65%;
+    transform: translateX(0);
+
+    &:hover {
+      color: #FFFFFF;
+      background-color: #2D9CDB;
+    }
   }
 }
