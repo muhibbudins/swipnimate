@@ -18,9 +18,9 @@ if (env === 'build') {
       }
     }
   }));
-  outputFile = libraryName + '.min.js';
+  outputFile = libraryName.toLocaleLowerCase() + '.min.js';
 } else {
-  outputFile = libraryName + '.js';
+  outputFile = libraryName.toLocaleLowerCase() + '.js';
 }
 
 const config = {

@@ -1,9 +1,9 @@
 {
-  "name": "swipnimate",
+  "name": "Swipnimate",
   "version": "1.0",
   "description": "Swiper.js and Animate.css in collaboration",
   "main": "/src/index.js",
-  "npmName": "swipnimate",
+  "npmName": "Swipnimate",
   "npmFileMap": [
     {
       "basePath": "lib",

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["swipnimate"] = factory();
+		exports["Swipnimate"] = factory();
 	else
-		root["swipnimate"] = factory();
+		root["Swipnimate"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
