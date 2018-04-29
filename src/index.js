@@ -4,7 +4,10 @@ export default class Swipnimate {
   constructor(args) {
     if (!args.target) throw Error('Target must be defined');
     this.target = args.target;
+    this.duration = args.duration;
     this.content = args.slides;
+    this.animateEnd = 'fadeOut';
+    this.pagination = document.querySelector('.swip-pagination');
     this.wrapper = document.querySelector('.swip-wrapper');
     this.element = ['background', 'image', 'title', 'tagline', 'button'];
 
@@ -18,7 +21,7 @@ export default class Swipnimate {
     return '_' + Math.random().toString(36).substr(2, 9);
   }
 
-  createSlide(cb) {
+  createSlide(callback) {
     let template = `
       <div class="swip-inner">
         <div class="swip-background"></div>
@@ -28,15 +31,22 @@ export default class Swipnimate {
         <a href="" class="swip-button"></a>
       </div>
     `;
-    let slide = document.createElement('div');
+    let fragment = document.createDocumentFragment();
 
-    slide.className = 'swip-slide';
-    slide.innerHTML = template;
+    this.pagination.classList.add('swiper-pagination');
 
     for (let i = 1; i <= this.content.length; i++) {
-      this.wrapper.appendChild(slide);
+      let slide = document.createElement('div');
+
+      slide.className = 'swip-slide';
+      slide.innerHTML = template;
+
+      fragment.appendChild(slide);
     }
-    cb('done');
+
+    this.wrapper.appendChild(fragment);
+
+    callback('done');
   }
 
   initialize() {
@@ -62,7 +72,7 @@ export default class Swipnimate {
           if (config.animation[item]) {
             let animation = config.animation[item];
 
-            swip[item].setAttribute('data-animation', animation[0]);
+            swip[item].setAttribute('data-start', animation[0]);
             swip[item].setAttribute('data-delay', `animation-duration-${animation[1]}`);
           }
         });
@@ -75,14 +85,19 @@ export default class Swipnimate {
       }
     });
 
+    this.startAnimation();
+  }
+
+  startAnimation() {
+
     /*eslint-disable */
-    const startAnimation = () => {
+    const startTransition = () => {
       let swip = {}
       
       this.element.map(item => {
         swip[item] = document.querySelector(`.swiper-slide-active .swip-${item}`);
 
-        let getAnimate = swip[item].getAttribute('data-animation')
+        let animateStart = swip[item].getAttribute('data-start')
         let getDelay = swip[item].getAttribute('data-delay')
         let getDelayNumber = parseInt(getDelay.match(/\d/g).join(''))
         
@@ -91,9 +106,25 @@ export default class Swipnimate {
         }, getDelayNumber)
 
         swip[item].classList.add('animated')
-        swip[item].classList.add(getAnimate)
+        swip[item].classList.add(animateStart)
         swip[item].classList.add(getDelay)
       });
+
+      setTimeout(() => {
+        this.element.map(item => {
+          swip[item] = document.querySelector(`.swiper-slide-active .swip-${item}`);
+
+          let animateStart = swip[item].getAttribute('data-start')
+          let getDelay = swip[item].getAttribute('data-delay')
+  
+          swip[item].classList.remove('animated')
+          swip[item].classList.remove(animateStart)
+          swip[item].classList.remove(getDelay)
+
+          swip[item].classList.add('animated')
+          swip[item].classList.add(this.animateEnd)
+        });
+      }, this.duration - 750);
     }
 
     const s = new Swiper(this.target, {
@@ -102,9 +133,10 @@ export default class Swipnimate {
       },
       paginationClickable: true,
       spaceBetween: 0,
+      effect: 'slide',
       shortSwipes: false,
       autoplay: {
-        delay: 5000
+        delay: this.duration
       },
       loop: true
     })
@@ -114,20 +146,21 @@ export default class Swipnimate {
       this.element.map(item => {
         swip[item] = document.querySelectorAll(`.swip-${item}`);
         swip[item].forEach(item => {
-          let getAnimate = item.getAttribute('data-animation')
+          let animateStart = item.getAttribute('data-start')
           let getDelay = item.getAttribute('data-delay')
   
           item.classList.remove('animated')
-          item.classList.remove(getAnimate)
+          item.classList.remove(animateStart)
+          item.classList.remove(this.animateEnd)
           item.classList.remove(getDelay)
           item.style.display = 'none'
         })
       });
     })
     .on('slideChangeTransitionEnd', () => {
-      startAnimation();
-    })
+      startTransition();
+    });
 
-    startAnimation();
+    startTransition();
   }
 }

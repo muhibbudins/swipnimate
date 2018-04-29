@@ -98,7 +98,10 @@ var Swipnimate = function () {
 
     if (!args.target) throw Error('Target must be defined');
     this.target = args.target;
+    this.duration = args.duration;
     this.content = args.slides;
+    this.animateEnd = 'fadeOut';
+    this.pagination = document.querySelector('.swip-pagination');
     this.wrapper = document.querySelector('.swip-wrapper');
     this.element = ['background', 'image', 'title', 'tagline', 'button'];
 
@@ -115,17 +118,24 @@ var Swipnimate = function () {
     }
   }, {
     key: 'createSlide',
-    value: function createSlide(cb) {
+    value: function createSlide(callback) {
       var template = '\n      <div class="swip-inner">\n        <div class="swip-background"></div>\n        <div class="swip-image"></div>\n        <div class="swip-title"></div>\n        <div class="swip-tagline"></div>\n        <a href="" class="swip-button"></a>\n      </div>\n    ';
-      var slide = document.createElement('div');
+      var fragment = document.createDocumentFragment();
 
-      slide.className = 'swip-slide';
-      slide.innerHTML = template;
+      this.pagination.classList.add('swiper-pagination');
 
       for (var i = 1; i <= this.content.length; i++) {
-        this.wrapper.appendChild(slide);
+        var slide = document.createElement('div');
+
+        slide.className = 'swip-slide';
+        slide.innerHTML = template;
+
+        fragment.appendChild(slide);
       }
-      cb('done');
+
+      this.wrapper.appendChild(fragment);
+
+      callback('done');
     }
   }, {
     key: 'initialize',
@@ -154,7 +164,7 @@ var Swipnimate = function () {
             if (config.animation[item]) {
               var animation = config.animation[item];
 
-              swip[item].setAttribute('data-animation', animation[0]);
+              swip[item].setAttribute('data-start', animation[0]);
               swip[item].setAttribute('data-delay', 'animation-duration-' + animation[1]);
             }
           });
@@ -167,14 +177,21 @@ var Swipnimate = function () {
         }
       });
 
+      this.startAnimation();
+    }
+  }, {
+    key: 'startAnimation',
+    value: function startAnimation() {
+      var _this3 = this;
+
       /*eslint-disable */
-      var startAnimation = function startAnimation() {
+      var startTransition = function startTransition() {
         var swip = {};
 
-        _this2.element.map(function (item) {
+        _this3.element.map(function (item) {
           swip[item] = document.querySelector('.swiper-slide-active .swip-' + item);
 
-          var getAnimate = swip[item].getAttribute('data-animation');
+          var animateStart = swip[item].getAttribute('data-start');
           var getDelay = swip[item].getAttribute('data-delay');
           var getDelayNumber = parseInt(getDelay.match(/\d/g).join(''));
 
@@ -183,9 +200,25 @@ var Swipnimate = function () {
           }, getDelayNumber);
 
           swip[item].classList.add('animated');
-          swip[item].classList.add(getAnimate);
+          swip[item].classList.add(animateStart);
           swip[item].classList.add(getDelay);
         });
+
+        setTimeout(function () {
+          _this3.element.map(function (item) {
+            swip[item] = document.querySelector('.swiper-slide-active .swip-' + item);
+
+            var animateStart = swip[item].getAttribute('data-start');
+            var getDelay = swip[item].getAttribute('data-delay');
+
+            swip[item].classList.remove('animated');
+            swip[item].classList.remove(animateStart);
+            swip[item].classList.remove(getDelay);
+
+            swip[item].classList.add('animated');
+            swip[item].classList.add(_this3.animateEnd);
+          });
+        }, _this3.duration - 750);
       };
 
       var s = new Swiper(this.target, {
@@ -194,31 +227,33 @@ var Swipnimate = function () {
         },
         paginationClickable: true,
         spaceBetween: 0,
+        effect: 'slide',
         shortSwipes: false,
         autoplay: {
-          delay: 5000
+          delay: this.duration
         },
         loop: true
       }).on('slideChangeTransitionStart', function () {
         var swip = {};
 
-        _this2.element.map(function (item) {
+        _this3.element.map(function (item) {
           swip[item] = document.querySelectorAll('.swip-' + item);
           swip[item].forEach(function (item) {
-            var getAnimate = item.getAttribute('data-animation');
+            var animateStart = item.getAttribute('data-start');
             var getDelay = item.getAttribute('data-delay');
 
             item.classList.remove('animated');
-            item.classList.remove(getAnimate);
+            item.classList.remove(animateStart);
+            item.classList.remove(_this3.animateEnd);
             item.classList.remove(getDelay);
             item.style.display = 'none';
           });
         });
       }).on('slideChangeTransitionEnd', function () {
-        startAnimation();
+        startTransition();
       });
 
-      startAnimation();
+      startTransition();
     }
   }]);
 

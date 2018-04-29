@@ -15,7 +15,7 @@
 </head>
 <body>
   <!-- Create Markup -->
-  <div class="swip-container" id="swip-container">
+  <div class="swip-container">
     <div class="swip-wrapper"></div>
     <div class="swip-pagination"></div>
   </div>
@@ -27,7 +27,8 @@
   <script src="../dist/swipnimate.js"></script>
   <script>
     var animate = new Swipnimate({
-      target: '#swip-container',
+      target: '.swip-container',
+      duration: 5000,
       slides: [{
         theme: 'trivium',
         background: '#E9FCFF',
@@ -39,8 +40,8 @@
           background: ['fadeIn', 0],
           image: ['fadeIn', 1200],
           title: ['slideInUp', 600],
-          tagline: ['slideInUp', 800],
-          button: ['slideInUp', 400]
+          tagline: ['slideInUp', 1000],
+          button: ['slideInUp', 1200]
         }
       }, {
         theme: 'trivium',
@@ -52,9 +53,9 @@
         animation: {
           background: ['fadeIn', 0],
           image: ['fadeIn', 1200],
-          title: ['slideInDown', 800],
-          tagline: ['slideInDown', 600],
-          button: ['slideInDown', 400]
+          title: ['slideInDown', 600],
+          tagline: ['slideInDown', 1000],
+          button: ['slideInDown', 1200]
         }
       }]
     });
