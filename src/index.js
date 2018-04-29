@@ -6,13 +6,37 @@ export default class Swipnimate {
     this.target = args.target;
     this.content = args.slides;
     this.wrapper = document.querySelector('.swip-wrapper');
-    this.slides = document.querySelectorAll('.swip-slide');
     this.element = ['background', 'image', 'title', 'tagline', 'button'];
-    this.initialize();
+
+    this.createSlide((done) => {
+      this.slides = document.querySelectorAll('.swip-slide');
+      this.initialize();
+    });
   }
 
   uniqueId() {
     return '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  createSlide(cb) {
+    let template = `
+      <div class="swip-inner">
+        <div class="swip-background"></div>
+        <div class="swip-image"></div>
+        <div class="swip-title"></div>
+        <div class="swip-tagline"></div>
+        <a href="" class="swip-button"></a>
+      </div>
+    `;
+    let slide = document.createElement('div');
+
+    slide.className = 'swip-slide';
+    slide.innerHTML = template;
+
+    for (let i = 1; i <= this.content.length; i++) {
+      this.wrapper.appendChild(slide);
+    }
+    cb('done');
   }
 
   initialize() {
@@ -74,10 +98,11 @@ export default class Swipnimate {
 
     const s = new Swiper(this.target, {
       pagination: {
-        el: '.swiper-pagination'
+        el: '.swip-pagination'
       },
       paginationClickable: true,
       spaceBetween: 0,
+      shortSwipes: false,
       autoplay: {
         delay: 5000
       },

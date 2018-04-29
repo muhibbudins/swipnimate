@@ -14,33 +14,17 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Roboto+Slab:700" rel="stylesheet">
 </head>
 <body>
+  <!-- Create Markup -->
   <div class="swip-container" id="swip-container">
-    <div class="swip-wrapper">
-      <div class="swip-slide">
-        <div class="swip-inner">
-          <div class="swip-background"></div>
-          <div class="swip-image"></div>
-          <div class="swip-title"></div>
-          <div class="swip-tagline"></div>
-          <a href="" class="swip-button"></a>
-        </div>
-      </div>
-      <div class="swip-slide">
-        <div class="swip-inner">
-          <div class="swip-background"></div>
-          <div class="swip-image"></div>
-          <div class="swip-title"></div>
-          <div class="swip-tagline"></div>
-          <a href="" class="swip-button"></a>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
+    <div class="swip-wrapper"></div>
+    <div class="swip-pagination"></div>
   </div>
   
-  <!-- Include Animate.css & Swiper.js -->
+  <!-- Include Swiper.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
-  <script src="../dist/Swipnimate.js"></script>
+
+  <!-- Import Swipnimate.js and create configuration -->
+  <script src="../dist/swipnimate.js"></script>
   <script>
     var animate = new Swipnimate({
       target: '#swip-container',

@@ -1,0 +1,56 @@
+.concertum .swip {
+  &-background {
+    display: none;
+    width: 800px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  &-image {
+    display: none;
+    width: 500px;
+    height: 400px;
+    right: -15%;
+    left: auto;
+    background-position: right center;
+  }
+  &-title {
+    display: none;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    font-size: 48px;
+    left: 5%;
+    transform: translateX(0);
+    width: 700px;
+    line-height: 1.1;
+    color: #4F4F4F;
+  }
+  &-tagline {
+    display: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    left: 5%;
+    transform: translateX(0);
+    width: 600px;
+    color: #7D7D7D;
+  }
+  &-button {
+    display: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: transparent;
+    border: 1px solid #2D9CDB;
+    color: #2D9CDB;
+    left: 5%;
+    top: 65%;
+    transform: translateX(0);
+
+    &:hover {
+      color: #FFFFFF;
+      background-color: #2D9CDB;
+    }
+  }
+}

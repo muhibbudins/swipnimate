@@ -1,0 +1,17 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+$delay: (100, 200, 300, 400, 500, 600, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1800, 1900, 2000);
+@each $time in $delay {
+  .animation-delay-#{$time} {
+      animation-delay: ($time / 1000) * 1s;
+  }
+  .animation-duration-#{$time} {
+      animation-duration: ($time / 1000) * 1s;
+  }
+  .animation-duration-#{$time * 2} {
+      animation-duration: ($time / 1000) * 2s;
+  }
+}
