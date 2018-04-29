@@ -1,0 +1,8 @@
+.swip-loading {
+  position: fixed; /* Enable clipping */
+  right: 40px;
+  bottom: 20px;
+  width: 50px; /* Set the size of the progress bar */
+  height: 50px;
+  z-index: 300;
+}
