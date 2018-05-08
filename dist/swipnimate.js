@@ -106,20 +106,20 @@ var Swipnimate = function () {
     this.wrapper = document.querySelector('.swip-wrapper');
     this.element = ['background', 'image', 'title', 'tagline', 'button'];
 
-    this.createSlide(function (done) {
+    this.setTemplate(function (done) {
       _this.slides = document.querySelectorAll('.swip-slide');
-      _this.initialize();
+      _this.init();
     });
   }
 
   _createClass(Swipnimate, [{
-    key: 'uniqueId',
-    value: function uniqueId() {
+    key: 'unique',
+    value: function unique() {
       return '_' + Math.random().toString(36).substr(2, 9);
     }
   }, {
-    key: 'createSlide',
-    value: function createSlide(callback) {
+    key: 'setTemplate',
+    value: function setTemplate(callback) {
       var template = '\n      <div class="swip-inner">\n        <div class="swip-background"></div>\n        <div class="swip-image"></div>\n        <div class="swip-title"></div>\n        <div class="swip-tagline"></div>\n        <a href="" class="swip-button"></a>\n      </div>\n    ';
       var loading = 'Loading';
       var fragment = document.createDocumentFragment();
@@ -142,8 +142,8 @@ var Swipnimate = function () {
       callback('done');
     }
   }, {
-    key: 'initialize',
-    value: function initialize() {
+    key: 'init',
+    value: function init() {
       var _this2 = this;
 
       var slides = this.slides;
@@ -153,7 +153,7 @@ var Swipnimate = function () {
       slides.forEach(function (slide, index) {
         if (content[index]) {
           var config = content[index];
-          var unique = _this2.uniqueId();
+          var unique = _this2.unique();
           var swip = {};
 
           slide.classList.add(config.theme);
@@ -181,11 +181,11 @@ var Swipnimate = function () {
         }
       });
 
-      this.startAnimation();
+      this.start();
     }
   }, {
-    key: 'startAnimation',
-    value: function startAnimation() {
+    key: 'start',
+    value: function start() {
       var _this3 = this;
 
       /*eslint-disable */
@@ -227,9 +227,9 @@ var Swipnimate = function () {
 
       var s = new Swiper(this.target, {
         pagination: {
-          el: '.swip-pagination'
+          el: '.swip-pagination',
+          clickable: true
         },
-        paginationClickable: true,
         spaceBetween: 0,
         shortSwipes: false,
         autoplay: {

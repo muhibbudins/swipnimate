@@ -12,17 +12,17 @@ export default class Swipnimate {
     this.wrapper = document.querySelector('.swip-wrapper');
     this.element = ['background', 'image', 'title', 'tagline', 'button'];
 
-    this.createSlide((done) => {
+    this.setTemplate((done) => {
       this.slides = document.querySelectorAll('.swip-slide');
-      this.initialize();
+      this.init();
     });
   }
 
-  uniqueId() {
+  unique() {
     return '_' + Math.random().toString(36).substr(2, 9);
   }
 
-  createSlide(callback) {
+  setTemplate(callback) {
     let template = `
       <div class="swip-inner">
         <div class="swip-background"></div>
@@ -53,7 +53,7 @@ export default class Swipnimate {
     callback('done');
   }
 
-  initialize() {
+  init() {
     let slides = this.slides;
     let content = this.content;
 
@@ -61,7 +61,7 @@ export default class Swipnimate {
     slides.forEach((slide, index) => {
       if (content[index]) {
         let config = content[index];
-        let unique = this.uniqueId();
+        let unique = this.unique();
         let swip = {};
 
         slide.classList.add(config.theme);
@@ -89,10 +89,10 @@ export default class Swipnimate {
       }
     });
 
-    this.startAnimation();
+    this.start();
   }
 
-  startAnimation() {
+  start() {
 
     /*eslint-disable */
     const startTransition = () => {
@@ -133,9 +133,9 @@ export default class Swipnimate {
 
     const s = new Swiper(this.target, {
       pagination: {
-        el: '.swip-pagination'
+        el: '.swip-pagination',
+        clickable: true
       },
-      paginationClickable: true,
       spaceBetween: 0,
       shortSwipes: false,
       autoplay: {
